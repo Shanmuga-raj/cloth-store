@@ -3,6 +3,7 @@ import {
   createUserDocumentFromAuth,
   createAuthUserWithEmailAndPassword,
 } from "../utils/firebase/firebase.utils";
+import FormInput from "../form-input/form-input.component";
 
 const defaultFormFields = {
   displayName: "",
@@ -34,8 +35,8 @@ const SignUpForm = () => {
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
-      if(error.code === 'auth/weak-password'){
-        alert('Weak Password, Should be atleast 6 Characters!')
+      if (error.code === "auth/weak-password") {
+        alert("Weak Password, Should be atleast 6 Characters!");
       }
       if (error.code === "auth/email-already-in-use") {
         alert("Email Already in use, Login Instead!");
@@ -52,8 +53,8 @@ const SignUpForm = () => {
     <div>
       <h1>Sign-Up using E-mail.</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='displayName'>Name</label>
-        <input
+        <FormInput
+          label='Name'
           type='text'
           required
           onChange={handleChange}
@@ -61,8 +62,8 @@ const SignUpForm = () => {
           value={displayName}
         />
 
-        <label htmlFor='email'>Email</label>
-        <input
+        <FormInput
+          label='E-mail'
           type='email'
           required
           onChange={handleChange}
@@ -70,8 +71,8 @@ const SignUpForm = () => {
           value={email}
         />
 
-        <label htmlFor='password'>Password</label>
-        <input
+        <FormInput
+          label='Password'
           type='password'
           required
           onChange={handleChange}
@@ -79,8 +80,8 @@ const SignUpForm = () => {
           value={password}
         />
 
-        <label htmlFor='ConfirmPassword'>Confirm Password</label>
-        <input
+        <FormInput
+          label='Confirm Password'
           type='password'
           required
           onChange={handleChange}
