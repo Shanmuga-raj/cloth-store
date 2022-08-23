@@ -1,10 +1,17 @@
-import { Fragment } from "react";
+import { useContext } from "react";
+import { ProductsContext } from "../../../contexts/products.context";
 
 const Shop = () => {
+  const { products } = useContext(ProductsContext);
+
   return (
-    <Fragment>
-      <div>SHOP COMPONENT</div>
-    </Fragment>
+    <div>
+      {products.map(({ id, name }) => (
+        <div key={id}>
+          <h1>{name}</h1>
+        </div>
+      ))}
+    </div>
   );
 };
 
